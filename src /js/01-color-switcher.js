@@ -1,10 +1,21 @@
 const startBtn = document.querySelector('[data-start]');
 const stoptBtn = document.querySelector('[data-stop]');
+const buttons = document.querySelector('.buttons');
+
+buttons.style.position = 'absolute';
+buttons.style.top = '50%';
+buttons.style.left = '44%';
+startBtn.style.textTransform = 'uppercase';
+stoptBtn.style.textTransform = 'uppercase';
+startBtn.style.fontSize = '25px';
+stoptBtn.style.fontSize = '25px';
+startBtn.style.padding = '25px';
+stoptBtn.style.padding = '25px';
+startBtn.style.marginRight = '10px';
 
 startBtn.classList.add('btn');
 stoptBtn.classList.add('btn');
 
-const buttons = document.querySelectorAll('.btn');
 let timerId = null;
 stoptBtn.disabled = true;
 
