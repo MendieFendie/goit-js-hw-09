@@ -1,12 +1,36 @@
-import 'flatpickr/dist/flatpickr.min.css';
-import flatpickr from 'flatpickr';
-const flatpickr = require('flatpickr');
-
 const startBtn = document.querySelector('[data-start]');
 const dayValue = document.querySelector('[data-days]');
 const hourValue = document.querySelector('[data-hours]');
 const minutValue = document.querySelector('[data-minutes]');
 const secondValue = document.querySelector('[data-seconds]');
+
+const timer = document.querySelector('.timer');
+const field = document.querySelectorAll('.field');
+const numberValue = document.querySelectorAll('.value');
+console.log(numberValue);
+timer.style.display = 'flex';
+field[0].style.display = 'flex';
+numberValue[0].style.fontSize = '37px';
+field[0].style.flexDirection = 'column';
+field[0].style.alignItems = 'center';
+field[0].style.marginRight = '10px';
+
+field[1].style.display = 'flex';
+numberValue[1].style.fontSize = '37px';
+field[1].style.flexDirection = 'column';
+field[1].style.alignItems = 'center';
+field[1].style.marginRight = '10px';
+
+field[2].style.display = 'flex';
+numberValue[2].style.fontSize = '37px';
+field[2].style.flexDirection = 'column';
+field[2].style.alignItems = 'center';
+field[2].style.marginRight = '10px';
+
+field[3].style.display = 'flex';
+numberValue[3].style.fontSize = '37px';
+field[3].style.flexDirection = 'column';
+field[3].style.alignItems = 'center';
 
 startBtn.addEventListener(`click`, onClick);
 startBtn.disabled = true;
@@ -35,21 +59,23 @@ let leftTime = null;
 function onClick(evt) {
   let date = new Date();
   date = date.getTime();
-  console.log(date);
+
   let timeLeft = pickedTime.getTime() - date;
-  console.log(timeLeft);
-  setInterval(() => {
+
+  let timerId = setInterval(() => {
     timeLeft = timeLeft - 1000;
     leftTime = convertMs(timeLeft);
     inputTime();
-    console.log(timeLeft);
-  }, 1000);
+    startBtn.disabled = true;
 
-  console.log(leftTime);
+    if (timeLeft <= 999) {
+      clearInterval(timerId);
+    }
+  }, 1000);
 }
 
 function inputTime() {
-  if (leftTime > 0) dayValue.textContent = leftTime.days;
+  dayValue.textContent = leftTime.days;
   dayValue.textContent = leftTime.days;
   hourValue.textContent = leftTime.hours;
   minutValue.textContent = leftTime.minutes;
